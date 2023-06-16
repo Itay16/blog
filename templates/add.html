@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add A Post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Welcome to the adding page!</h1>
+<h1>Here you may add a new post to the blog</h1>
+<h1>Want to go back to the Home Page? <a href="http://127.0.0.1:5000/">Click Here!</a></h1>
+<div class="container">
+    <div class="form">
+        <form class="form" action="/" method="POST">
+            <div class="inputs">
+                <label for="author">Author's name:</label>
+                <input type="text" id="author" name="author" placeholder="Author" required>
+            </div>
+
+            <div class="inputs">
+                <label for="title">Title of the post:</label>
+                <input type="text" id="title" name="title" placeholder="Title" required>
+            </div>
+
+            <div class="inputs">
+                <label for="content">Content of Post:</label>
+                <textarea id="content" name="content" rows="4" placeholder="Content" required></textarea>
+            </div>
+
+            <div class="inputs">
+                <button>Submit Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

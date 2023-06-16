@@ -1,13 +1,36 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #F5F5F5;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+html, body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    margin: 0;
     padding: 20px;
-    color: #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 h1 {
     text-align: center;
     color: #4F4F4F;
+    margin-bottom: 10px;
+}
+
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
 }
 
 .post {
@@ -16,12 +39,90 @@ h1 {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
+    text-align: center;
 }
 
 .post h2 {
     margin-top: 0;
+    text-align: center;
 }
 
 .post p {
     margin: 10px 0;
+    text-align: center;
+}
+
+.form {
+    position: relative;
+    width: 350px;
+    height: 500px;
+    border-radius: 20px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: #ecf0f3;
+    box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.inputs input,
+.inputs textarea {
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+  font-family: Arial, sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+textarea {
+  flex: 1;
+  resize: vertical;
+}
+
+
+button {
+    color: white;
+    margin-top: 20px;
+    background: #1DA1F2;
+    height: 40px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 900;
+    box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+    transition: 0.5s;
+}
+
+button:hover {
+    box-shadow: none;
+}
+
+input::placeholder {
+    color: gray;
+}
+
+input {
+    background: #ecf0f3;
+    padding: 10px;
+    padding-left: 20px;
+    height: 50px;
+    font-size: 14px;
+    border-radius: 50px;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+    font-family: Arial, sans-serif;
 }

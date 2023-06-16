@@ -7,21 +7,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<h1>Welcome to My Flask Blog!</h1>
-<div class="post">
-    <h2>Post Title</h2>
-    <p><em>Written by ...</em></p>
-    <p>Post content</p>
-</div>
-<div class="post">
-    <h2>Post Title</h2>
-    <p><em>Written by ...</em></p>
-    <p>Post content</p>
-</div>
-<div class="post">
-    <h2>Post Title</h2>
-    <p><em>Written by ...</em></p>
-    <p>Post content</p>
+<div class="container">
+    <h1>Welcome to My Flask Blog!</h1>
+    <h1>Want to add a new post? <a href="http://127.0.0.1:5000/add">Click Here!</a></h1>
+    <div class="posts">
+        {% for post in posts %}
+        <div class="post">
+            <h2>{{ post.title }}</h2>
+            <p><em>Written by {{ post.author }}</em></p>
+            <p>{{ post.content }}</p>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 </body>
 </html>
