@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for
 import json
 
 app = Flask(__name__)
@@ -23,44 +23,45 @@ def save_posts_data(posts_data):
 posts_data = load_posts_data()
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def index():
-    if request.method == 'POST':
-        # Handle the form submission
-        return redirect('/add')
-
-    # Handle GET request to render the home page
     return render_template('index.html', posts=posts_data)
 
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
-        # Get the form data
+        # Handle the form submission
         author = request.form['author']
         title = request.form['title']
         content = request.form['content']
+        # Rest of the code for adding a new post...
 
-        # Find the maximum ID in the existing posts
-        max_id = max([post['id'] for post in posts_data]) if posts_data else 0
+        return redirect(url_for('index'))
 
-        # Create a new post dictionary
-        new_post = {
-            "id": max_id + 1,
-            "author": author,
-            "title": title,
-            "content": content
-        }
+    return render_template('add.html')
 
-        # Append the new post to the existing data
-        posts_data.append(new_post)
+
+@app.route('/delete/<int:post_id>')
+def delete(post_id):
+    global posts_data
+
+    # Find the index of the post with the specified ID
+    post_index = -1
+    for i in range(len(posts_data)):
+        if posts_data[i]['id'] == post_id:
+            post_index = i
+            break
+
+    if post_index != -1:
+        # Remove the post from the list
+        del posts_data[post_index]
 
         # Save the updated data to the file
         save_posts_data(posts_data)
 
-        return redirect('/')
+    return redirect(url_for('index'))
 
-    return render_template('add.html')
 
 
 if __name__ == '__main__':
