@@ -20,6 +20,13 @@ def save_posts_data(posts_data):
         json.dump(posts_data, file, indent=4)
 
 
+def fetch_post_by_id(post_id):
+    for post in posts_data:
+        if post['id'] == post_id:
+            return post
+    return None
+
+
 posts_data = load_posts_data()
 
 
@@ -31,13 +38,30 @@ def index():
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     if request.method == 'POST':
-        # Handle the form submission
+        # Get the form data
         author = request.form['author']
         title = request.form['title']
         content = request.form['content']
-        # Rest of the code for adding a new post...
 
-        return redirect(url_for('index'))
+        # Find the maximum ID in the existing posts
+        max_id = max([post['id'] for post in posts_data]) if posts_data else 0
+
+        # Create a new post dictionary
+        new_post = {
+            "id": max_id + 1,
+            "author": author,
+            "title": title,
+            "content": content
+        }
+
+        # Append the new post to the existing data
+        posts_data.append(new_post)
+
+        # Save the updated data to the file
+        save_posts_data(posts_data)
+
+        # Redirect to the homepage
+        return redirect('/')
 
     return render_template('add.html')
 
@@ -46,9 +70,9 @@ def add():
 def delete(post_id):
     # Find the index of the post with the specified ID
     post_index = -1
-    for i in range(len(posts_data)):
-        if posts_data[i]['id'] == post_id:
-            post_index = i
+    for index, post in enumerate(posts_data):
+        if post['id'] == post_id:
+            post_index = index
             break
 
     if post_index != -1:
@@ -59,6 +83,34 @@ def delete(post_id):
         save_posts_data(posts_data)
 
     return redirect(url_for('index'))
+
+
+@app.route('/update/<int:post_id>', methods=['GET', 'POST'])
+def update(post_id):
+    # Fetch the blog post from the JSON file
+    post = fetch_post_by_id(post_id)
+    if post is None:
+        # Post not found
+        return "Post not found", 404
+
+    if request.method == 'POST':
+        # Get the form data
+        author = request.form['author']
+        title = request.form['title']
+        content = request.form['content']
+
+        # Update the post dictionary
+        post['author'] = author
+        post['title'] = title
+        post['content'] = content
+
+        # Save the updated data to the file
+        save_posts_data(posts_data)
+
+        # Redirect to the homepage
+        return redirect('/')
+
+    return render_template('update.html', post=post)
 
 
 if __name__ == '__main__':

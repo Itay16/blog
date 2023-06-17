@@ -1,14 +1,20 @@
 [
-  {
-    "id": 1,
-    "author": "John Doe",
-    "title": "First Post",
-    "content": "This is my first post."
-  },
-  {
-    "id": 2,
-    "author": "Jane Doe",
-    "title": "Second Post",
-    "content": "This is another post."
-  }
+    {
+        "id": 2,
+        "author": "Jane Doe",
+        "title": "First Post",
+        "content": "Hello! I love coding and Python and the internet!"
+    },
+    {
+        "id": 3,
+        "author": "Itay Sella",
+        "title": "Second Post",
+        "content": "God I love coding this is so much fun!!"
+    },
+    {
+        "id": 4,
+        "author": "Itay Sella",
+        "title": "Third Post",
+        "content": "It's Saturday June 17th, life has been good to me recently."
+    }
 ]

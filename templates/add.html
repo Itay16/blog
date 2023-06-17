@@ -8,10 +8,10 @@
 <body>
 <h1>Welcome to the adding page!</h1>
 <h1>Here you may add a new post to the blog</h1>
-<h1>Want to go back to the Home Page? <a href="{{ url_for('index') }}">Click Here!</a></h1>
+<h1>Want to go back to the Home Page? <a href="/">Click Here!</a></h1>
 <div class="container">
     <div class="form">
-        <form class="form" action="/add" method="POST"> <!-- Update the form action to /add -->
+        <form class="form" action="{{ url_for('add') }}" method="POST">
             <div class="inputs">
                 <label for="author">Author's name:</label>
                 <input type="text" id="author" name="author" placeholder="Author" required>
@@ -28,7 +28,7 @@
             </div>
 
             <div class="inputs">
-                <button type="submit">Submit Post</button> <!-- Added type attribute to the button -->
+                <button type="submit">Submit Post</button>
             </div>
         </form>
     </div>
