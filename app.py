@@ -44,8 +44,6 @@ def add():
 
 @app.route('/delete/<int:post_id>')
 def delete(post_id):
-    global posts_data
-
     # Find the index of the post with the specified ID
     post_index = -1
     for i in range(len(posts_data)):
@@ -61,7 +59,6 @@ def delete(post_id):
         save_posts_data(posts_data)
 
     return redirect(url_for('index'))
-
 
 
 if __name__ == '__main__':
